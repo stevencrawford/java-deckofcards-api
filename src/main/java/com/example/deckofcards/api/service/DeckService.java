@@ -9,9 +9,9 @@ public interface DeckService {
 
     Deck createDecks(final int count);
 
-    Deck getDeck(final String deckId);
-
     Deck createPartialDeck(final List<Card> cards);
+
+    Deck getDeck(final String deckId);
 
     Deck shuffleDeck(final String deckId, int deckCount);
 

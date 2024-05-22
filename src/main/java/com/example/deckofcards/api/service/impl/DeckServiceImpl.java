@@ -1,5 +1,6 @@
 package com.example.deckofcards.api.service.impl;
 
+import com.example.deckofcards.api.common.exception.EntityNotFoundException;
 import com.example.deckofcards.api.model.Card;
 import com.example.deckofcards.api.model.Deck;
 import com.example.deckofcards.api.model.Suit;
@@ -21,11 +22,14 @@ public class DeckServiceImpl implements DeckService {
 
     @Override
     public Deck createDecks(final int count) {
-        List<Card> cards = copyNTimes(Arrays.stream(Suit.values())
-                .flatMap(suit -> Arrays.stream(VALUES)
-                        .map(value -> new Card(value, suit)))
-                .toList(), count)
-        ;
+        List<Card> cards = Deck.copyNTimes(
+                Arrays.stream(Suit.values())
+                    .flatMap(suit -> Arrays.stream(VALUES)
+                            .map(value -> new Card(value, suit)))
+                    .toList()
+                , count
+        );
+
         Deck deck = Deck.builder()
                 .success(true)
                 .deckId(Deck.IdGenerator.generateID())
@@ -54,7 +58,7 @@ public class DeckServiceImpl implements DeckService {
                 : deckRepository.findById(deckId);
 
         if (byDeckId.isEmpty()) {
-            throw new IllegalArgumentException(format("No such Deck with ID `%s`", deckId));
+            throw new EntityNotFoundException(format("No such Deck with ID `%s`", deckId));
         }
         Deck existing = byDeckId.get();
         existing.shuffle();
@@ -66,7 +70,7 @@ public class DeckServiceImpl implements DeckService {
     public Deck drawCardsFromDeck(final String deckId, final int count) {
         Optional<Deck> byDeckId = deckRepository.findById(deckId);
         if (byDeckId.isEmpty()) {
-            throw new IllegalArgumentException(format("No such Deck with ID `%s`", deckId));
+            throw new EntityNotFoundException(format("No such Deck with ID `%s`", deckId));
         }
         Deck existing = byDeckId.get();
 
@@ -84,14 +88,8 @@ public class DeckServiceImpl implements DeckService {
 
     @Override
     public Deck getDeck(String deckId) {
-        return deckRepository.findById(deckId).orElse(null);
+        return deckRepository.findById(deckId)
+                .orElseThrow(() -> new EntityNotFoundException(format("Deck with ID `%s` not found", deckId)));
     }
 
-    private static <Card> List<Card> copyNTimes(List<Card> list, int n) {
-        List<Card> copies = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            copies.addAll(list);
-        }
-        return copies;
-    }
 }

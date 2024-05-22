@@ -11,6 +11,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -48,5 +49,13 @@ public class Deck implements Serializable {
                     .replace("-", "")
                     .substring(0, 11);
         }
+    }
+
+    public static <Card> List<Card> copyNTimes(List<Card> cards, int n) {
+        List<Card> copies = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            copies.addAll(cards);
+        }
+        return copies;
     }
 }

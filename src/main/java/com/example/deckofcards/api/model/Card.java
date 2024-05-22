@@ -16,7 +16,7 @@ import static java.lang.String.format;
 @JsonPropertyOrder({"code", "image", "images", "value", "suit"})
 public class Card {
 
-    private static final String VALUES_AS_STRING = "A,2,3,4,5,6,7,8,9,10,J,Q,K";
+    private static final String VALUES_AS_STRING = "A,2,3,4,5,6,7,8,9,0,J,Q,K";
     public static final String[] VALUES = VALUES_AS_STRING.split(",");
 
     private String value;
@@ -55,6 +55,6 @@ public class Card {
         return new Card(value, suit);
     }
 
-    record Images(String svg, String png) {}
+    public record Images(String svg, String png) {}
 
 }

@@ -1,8 +1,12 @@
 ### POST Create a new Deck
 POST {{baseUrl}}/api/deck/new
 
-### POST Create a new shuffled Deck
+### POST Create a new Deck and shuffle
 POST {{baseUrl}}/api/deck/new/shuffle
+
+### POST Create a new partial Deck and shuffle
+@cards = AS,2S,KS,AD,2D,KD,AC,2C,KC,AH,2H,KH
+POST {{baseUrl}}/api/deck/new/shuffle?cards={{cards}}
 
 ### GET a given Deck by Id
 @deckId = ef8bc3d04e9
@@ -12,5 +16,5 @@ GET {{baseUrl}}/api/deck/{{deckId}}
 POST {{baseUrl}}/api/deck/{{deckId}}/shuffle
 
 ### GET Draw cards from a given Deck
-@count = 3
-GET {{baseUrl}}/api/deck/{{deckId}}/draw?count={{count}}}
+@count = 30000
+GET {{baseUrl}}/api/deck/{{deckId}}/draw?count={{count}}

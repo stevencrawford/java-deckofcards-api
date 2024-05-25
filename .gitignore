@@ -26,3 +26,6 @@ replay_pid*
 
 # OS Specific
 .DS_Store
+
+# Local database files
+database/

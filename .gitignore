@@ -29,3 +29,6 @@ replay_pid*
 
 # Local database files
 database/
+
+# IntelliJ files
+.idea

@@ -10,7 +10,7 @@ public class ApplicationException extends RuntimeException {
     private final RestResponseError.Error error;
 
     public ApplicationException(final HttpStatus httpStatus, final String code, final String description) {
-        super();
+        super(description);
         error = new RestResponseError.Error(httpStatus, code, description);
     }
 }

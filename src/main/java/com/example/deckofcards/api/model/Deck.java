@@ -20,7 +20,6 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"success", "deck_id", "shuffled", "cards", "remaining"})
 @RedisHash("Deck")
 public class Deck implements Serializable {
@@ -41,6 +40,7 @@ public class Deck implements Serializable {
 
     public void shuffle() {
         Collections.shuffle(cards);
+        this.shuffled = true;
     }
 
     public static class IdGenerator {

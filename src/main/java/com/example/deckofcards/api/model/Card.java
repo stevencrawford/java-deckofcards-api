@@ -40,8 +40,8 @@ public class Card {
     @JsonProperty
     Images images() {
         return new Images(
-                format("https://localhost:8080/static/img/%s.svg", code()),
-                format("https://localhost:8080/static/img/%s.png", code())
+                format("http://localhost:8080/img/%s.svg", code()),
+                format("http://localhost:8080/img/%s.png", code())
         );
     }
 

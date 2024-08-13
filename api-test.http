@@ -9,7 +9,7 @@ POST {{baseUrl}}/api/deck/new/shuffle
 POST {{baseUrl}}/api/deck/new/shuffle?cards={{cards}}
 
 ### GET a given Deck by Id
-@deckId = ef8bc3d04e9
+@deckId = 680e352f7e6
 GET {{baseUrl}}/api/deck/{{deckId}}
 
 ### POST Shuffle a given Deck

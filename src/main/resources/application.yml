@@ -1,3 +1,10 @@
 spring:
   application:
     name: Deck of Cards API
+
+camel:
+  springboot:
+    main-run-controller: true
+  servlet:
+    mapping:
+      context-path: /api/*

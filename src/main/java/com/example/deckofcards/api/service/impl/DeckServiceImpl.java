@@ -7,14 +7,14 @@ import com.example.deckofcards.api.model.Suit;
 import com.example.deckofcards.api.repository.DeckRepository;
 import com.example.deckofcards.api.service.DeckService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 import static com.example.deckofcards.api.model.Card.VALUES;
 import static java.lang.String.format;
 
-@Component
+@Service("deckService")
 @RequiredArgsConstructor
 public class DeckServiceImpl implements DeckService {
 
